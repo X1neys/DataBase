@@ -9,7 +9,7 @@ public class StudentApp {
     public static void main(String[] args) {
         displayExistingStudent();
 
-        Student newStudent = new getStudentDetails();
+        Student newStudent = getStudentDetails();
         if (dbManager.addStudent(newStudent)){
             System.out.println("Successfully added the student:" + newStudent);
         }else{
@@ -41,3 +41,5 @@ private static Student getStudentDetails(){
     return new Student(studentId, lname, fname, mi);
     }
 }
+
+

@@ -2,9 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class DatabaseManager{
-    private static final String URL = "jdbc:mysql://localhost:3306/your_database_name";
+public class DatabaseManager {
+    private static final String URL = "jdbc:mysql://localhost:3306/javadatabase";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
@@ -21,17 +20,20 @@ public class DatabaseManager{
                 String lname = resultSet.getString("lname");
                 String fname = resultSet.getString("fname");
                 String mi = resultSet.getString("mi");
-                
+
+                Student student = new Student(studentId, lname, fname, mi);//added this
+                students.add(student);
             }
         } catch (SQLException e) {
             System.out.println("Failed to retrieve students: " + e.getMessage());
         }
         return students;
     }
+
     public boolean addStudent(Student student) {
-        String inesertQuery = "INSERT INTO student (studentid, lname, fname, mi) VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO student (studentid, lname, fname, mi) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(inesertQuery)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 
             preparedStatement.setString(1, student.getStudentId());
             preparedStatement.setString(2, student.getLname());
@@ -41,7 +43,7 @@ public class DatabaseManager{
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            System.out.println("Failedd to add the student: " + e.getMessage());
+            System.out.println("Failed to add the student: " + e.getMessage());
             return false;
         }
     }

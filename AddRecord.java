@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class AddRecord{
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/your_database_name";
+        String url = "jdbc:mysql://localhost:3306/javadatabase";
         String user = "root";
         String password = "";
 
         String selectQuery = "SELECT studentid, lname, fname, mi FROM student";
-        String insertQuery = "INSERT INTO student (lname, fname, mi) VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO student (studentid, lname, fname, mi) VALUES (?, ?, ?, ?)";
 
         Scanner scanner = new Scanner(System.in);
         try{
@@ -19,7 +19,7 @@ public class AddRecord{
 
             System.out.println("Current Records in the Database:");
             while (resultSet.next()) {
-                int studentId = resultSet.getInt("studentid");
+                String studentId = resultSet.getString("studentid");
                 String lname = resultSet.getString("lname");
                 String fname = resultSet.getString("fname");
                 String mi = resultSet.getString("mi");

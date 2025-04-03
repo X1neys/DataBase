@@ -3,7 +3,7 @@ import java.sql.*;
 public class JavaDatabaseDemo{
 
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/your_database_name"; 
+        String url = "jdbc:mysql://localhost:3306/javadatabase"; 
         String user = "root"; 
         String password = "";
         String query = "SELECT * id, lname, fname, mi FROM student";
